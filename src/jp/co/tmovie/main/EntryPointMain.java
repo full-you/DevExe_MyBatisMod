@@ -1,5 +1,6 @@
 package jp.co.tmovie.main;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import jp.co.tmovie.logic.SearchCinemaInformationLogic;
@@ -51,8 +52,22 @@ public class EntryPointMain {
 					// メニュー表示フラグに true 
 					menuFlg = true;
 				} else {
+					// ★修正前 start
+//					// 上映スケジュール表示し、flgを更新
+//					menuFlg = new SearchCinemaInformationLogic().execute();
+					// ★修正前 end
+
+					// ★修正後 start
 					// 上映スケジュール表示し、flgを更新
-					menuFlg = new SearchCinemaInformationLogic().execute();
+					// ★try-catchを追加し、Exceptionが発生したらbreakしループを抜けるように修正
+					try {
+						menuFlg = new SearchCinemaInformationLogic().execute();
+					} catch (IOException e) {
+						e.printStackTrace();
+						break;
+					}
+					// ★修正後 end
+
 				}
 			} else {
 				// 正しい入力値じゃないならメッセージを表示

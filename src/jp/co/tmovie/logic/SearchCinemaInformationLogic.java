@@ -1,11 +1,12 @@
 package jp.co.tmovie.logic;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import jp.co.tmovie.dao.SearchCinemaInformationDAO;
-import jp.co.tmovie.dao.SearchCinemaInformationDAOImpl;
 import jp.co.tmovie.dto.SearchCinemaInformationDTO;
+import jp.co.tmovie.mybatis.MyBatisDataBaseManager;
+import jp.co.tmovie.mybatis.mapper.TheaterInfoMapper;
 
 /**
 * 劇場IDを検索し、上映スケジュールを表示するクラス
@@ -22,8 +23,9 @@ public class SearchCinemaInformationLogic {
 
 	/**
 	 * 検索処理を実行し、メニューの表示フラグの値を返すメソッド
+	 * @throws IOException 
 	 */
-	public boolean execute() {
+	public boolean execute() throws IOException {
 
 		// 文字入力を受け取る変数scannerを宣言
 		@SuppressWarnings("resource") // 「scannerが閉じられることはありません」ワーニングが出ないようにするアノテーション
@@ -37,12 +39,21 @@ public class SearchCinemaInformationLogic {
 		//String型の変数searchIDに入力された値を代入する
 		String searchID = scanner.nextLine();
 
-		// DAOのインスタンスを生成
-		SearchCinemaInformationDAO dao = new SearchCinemaInformationDAOImpl();
+		// ★修正前 start
+//		// DAOのインスタンスを生成
+//		SearchCinemaInformationDAO dao = new SearchCinemaInformationDAOImpl();
+//
+//		// DAOをインスタンス化
+//		List<SearchCinemaInformationDTO> movieInfoDtoList = dao.searchCinemaInformation(searchID);
+		// ★修正前 end
 
-		// DAOをインスタンス化
-		List<SearchCinemaInformationDTO> movieInfoDtoList = dao.searchCinemaInformation(searchID);
-
+		// ★修正後 start
+		// SqlSessionからMapperを取得
+		TheaterInfoMapper mapper = MyBatisDataBaseManager.getSession().getMapper(TheaterInfoMapper.class);
+		// 映画情報の取得
+		List<SearchCinemaInformationDTO> movieInfoDtoList = mapper.selectTheaterInfo(searchID);
+		// ★修正後 end
+		
 		//リストが空のとき、画面表示をする
 		if (movieInfoDtoList.isEmpty()) {
 			System.out.println("該当する上映スケジュールはありません");

@@ -1,5 +1,5 @@
 package jp.co.tmovie.dao;
- 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import jp.co.tmovie.common.database.DataBaseManager;
 import jp.co.tmovie.dto.SearchCinemaInformationDTO;
- 
+
 /**
 * 映画館の情報の検索で使うDAO
 * @author hay-aoki tat-oonishi
@@ -28,7 +28,7 @@ public class SearchCinemaInformationDAOImpl implements SearchCinemaInformationDA
 		Connection dbConnection = dbManager.getConnection();
 		// SQLの結果を格納するリストを作成
 		List<SearchCinemaInformationDTO> dtoList = new ArrayList<SearchCinemaInformationDTO>();
- 
+
 		try {
 			// 上映情報を取得するSQL			
 			String sql = "SELECT"
@@ -43,19 +43,20 @@ public class SearchCinemaInformationDAOImpl implements SearchCinemaInformationDA
 					+ " JOIN SCREEN_INFO ON SHOWING_MNG.screen_id = SCREEN_INFO.screen_id"
 					+ " JOIN MOVIE_INFO ON SHOWING_MNG.movie_id = MOVIE_INFO.movie_id"
 					+ " WHERE THEATER_INFO.theater_id = ?"
-					+ " AND SHOWING_MNG.movie_start_dt = CURRENT_DATE"
+					// システム日付を条件とするとhitしないためコメントアウト
+					//+ " AND SHOWING_MNG.movie_start_dt = CURRENT_DATE"
 					+ " AND SHOWING_MNG.movie_start_tm >= CURRENT_TIMESTAMP"
 					+ " ORDER BY screen_nm, movie_start_tm, movie_nm;";
- 
+
 			// SQLのインスタンスを生成する
 			PreparedStatement statement = dbConnection.prepareStatement(sql);
- 
+
 			// パラメーターを設定する
 			statement.setString(1, theaterId);
- 
+
 			// SQLを実行する
 			ResultSet result = statement.executeQuery();
- 
+
 			// ResultSetからDTOへデータを格納する
 			while (result.next()) {
 				SearchCinemaInformationDTO dto = new SearchCinemaInformationDTO();

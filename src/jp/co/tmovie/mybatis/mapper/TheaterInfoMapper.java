@@ -1,0 +1,19 @@
+package jp.co.tmovie.mybatis.mapper;
+
+import java.util.List;
+
+import jp.co.tmovie.dto.SearchCinemaInformationDTO;
+
+/**
+ * 劇場情報mapper
+ * @author y-furuyama
+ */
+public interface TheaterInfoMapper {
+
+	/**
+	 * 劇場情報を取得する
+	 * @param searchID 劇場IDを設定する
+	 * @return 劇場情報
+	 */
+	public List<SearchCinemaInformationDTO> selectTheaterInfo(String searchID);
+}

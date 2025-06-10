@@ -6,25 +6,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/pleiades/2024-12/workspace/DevExe/lib/commons-dbcp2-2.1.1.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/pleiades/2024-12/workspace/DevExe/lib/commons-pool2-2.4.2.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/pleiades/2024-12/workspace/DevExe/lib/mysql-connector-j-8.3.0.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/pleiades/2024-12/workspace/DevExe/lib/org-apache-commons-logging.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="lib/commons-dbcp2-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool2-2.4.2.jar"/>
+	<classpathentry kind="lib" path="lib/mybatis-3.5.16.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-j-8.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/org-apache-commons-logging.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
