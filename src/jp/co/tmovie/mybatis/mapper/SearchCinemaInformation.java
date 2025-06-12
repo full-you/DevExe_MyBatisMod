@@ -8,7 +8,7 @@ import jp.co.tmovie.dto.SearchCinemaInformationDTO;
  * 劇場情報mapper
  * @author y-furuyama
  */
-public interface TheaterInfoMapper {
+public interface SearchCinemaInformation {
 
 	/**
 	 * 劇場情報を取得する

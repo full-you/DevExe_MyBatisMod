@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import jp.co.tmovie.dto.SearchCinemaInformationDTO;
 import jp.co.tmovie.mybatis.MyBatisDataBaseManager;
-import jp.co.tmovie.mybatis.mapper.TheaterInfoMapper;
+import jp.co.tmovie.mybatis.mapper.SearchCinemaInformation;
 
 /**
 * 劇場IDを検索し、上映スケジュールを表示するクラス
@@ -49,7 +49,7 @@ public class SearchCinemaInformationLogic {
 
 		// ★修正後 start
 		// SqlSessionからMapperを取得
-		TheaterInfoMapper mapper = MyBatisDataBaseManager.getSession().getMapper(TheaterInfoMapper.class);
+		SearchCinemaInformation mapper = MyBatisDataBaseManager.getSession().getMapper(SearchCinemaInformation.class);
 		// 映画情報の取得
 		List<SearchCinemaInformationDTO> movieInfoDtoList = mapper.selectTheaterInfo(searchID);
 		// ★修正後 end

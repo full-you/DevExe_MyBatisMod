@@ -20,6 +20,6 @@
 
 	<!-- mapperファイルの配置場所 -->
 	<mappers>
-		<mapper resource="resources/mybatis/mapper/TheaterInfoMapper.xml" />
+		<mapper resource="resources/mybatis/mapper/SearchCinemaInformation.xml" />
 	</mappers>
 </configuration>
